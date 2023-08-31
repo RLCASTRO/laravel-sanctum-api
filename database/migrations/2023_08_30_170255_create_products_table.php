@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('slug');
             $table->string('description')->nullable();
-            $table->string('price', 5, 2);
+            $table->string('price', 10, 2);
             $table->timestamps();
         });
     }

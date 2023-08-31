@@ -43,7 +43,14 @@ class ProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        //get the product
+        $product = Product::find($id);
+
+        //update the product
+        $product->update($request->all());
+
+        //return the product
+        return $product;
     }
 
     /**
@@ -51,6 +58,14 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        return Product::destroy($id);
+    }
+
+    /**
+     *  Search for a name
+     */
+    public function search(string $name)
+    {
+        return Product::where('name', 'like', '%'.$name.'%')->get();
     }
 }

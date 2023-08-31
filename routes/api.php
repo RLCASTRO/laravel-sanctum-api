@@ -15,10 +15,18 @@ use App\Http\Controllers\ProductController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+//Protected routes
+Route::group(['middleware' => ['auth:sanctum']], function () {
 });
 
+
+// Public routes
+//search for products
+Route::get('/products/search/{name}', [ProductController::class, 'search']);
 
 //This will capture all /products routes and call the respective class method for all the CRUD operations
 Route::resource('products', ProductController::class);
@@ -32,7 +40,3 @@ Route::resource('products', ProductController::class);
 
 // //gets a single product
 // Route::get('/products/{id}', [ProductController::class, 'show']);
-
-
-//search for products
-Route::get('/products/search/{name}', [ProductController::class, 'search']);

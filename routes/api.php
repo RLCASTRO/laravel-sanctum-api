@@ -28,6 +28,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::put('/products/{id}', [ProductController::class, 'update']);
     // //stores a single product
     Route::delete('/products/{id}', [ProductController::class, 'destroy']);
+    //Logout Route
+    Route::post('/logout', [AuthController::class, 'logout']);
 });
 
 

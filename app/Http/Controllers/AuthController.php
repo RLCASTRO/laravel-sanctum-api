@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    public function register(Request $request) {
+    public function register(Request $request)
+    {
         // Store the request data into a variable
         $fields = $request->validate([
             'name' => 'required|string',
@@ -35,5 +37,16 @@ class AuthController extends Controller
 
         //Returns the Response object with the status code 201
         return response($response, 201);
+    }
+
+    public function logout(Request $request)
+    {
+        $user = $request->user();
+
+        $user->tokens()->delete();
+
+        return [
+            'message' => 'Logout Success'
+        ];
     }
 }

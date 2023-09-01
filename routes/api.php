@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductController;
 
 /*
@@ -33,10 +34,12 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 // Public routes
 //search for products
 Route::get('/products/search/{name}', [ProductController::class, 'search']);
-// //get all products
+//get all products
 Route::get('/products', [ProductController::class, 'index']);
-// //gets a single product
+//gets a single product
 Route::get('/products/{id}', [ProductController::class, 'show']);
+//Register Route
+Route::post('/register', [AuthController::class, 'register']);
 
 
 //You can separate each route, or if your API has all the basic CRUD routes, you can use resource instead

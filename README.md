@@ -64,3 +64,14 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## How to use this application
+- Clone the repository
+- Enter in the project directory with ```cd laravel-sanctum-api```
+- Install the dependencies by running: ```composer install```
+- If in MacOS, you can use the Laravel Valet and access the url: 'http://laravel-sanctum-api.test/'
+- If Linux or Windows, you can run the server with ```php artisan serve```
+- Create a new database in you MySQL or whatever you're using
+- Create the .env file and configure you database settings
+- Run the ```php artisan migrate``` to create the tables in your database
+- Use Postman to send requests to the endpoints

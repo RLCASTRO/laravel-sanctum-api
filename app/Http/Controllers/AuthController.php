@@ -39,6 +39,37 @@ class AuthController extends Controller
         return response($response, 201);
     }
 
+    public function login(Request $request)
+    {
+        // Store the request data into a variable
+        $fields = $request->validate([
+            'email' => 'required|string',
+            'password' => 'required|string',
+        ]);
+
+        //check email 
+        $user = User::where('email', $fields['email'])->first();
+
+        //Check Password
+        if (!$user || !Hash::check($fields['password'], $user->password)) {
+            return response([
+                'message' => 'Bad Credentials',
+            ], 401);
+        }
+
+        //Generates the Token
+        $token = $user->createToken('myapptoken')->plainTextToken;
+
+        //Generates the Response object
+        $response = [
+            'user' => $user,
+            'token' => $token,
+        ];
+
+        //Returns the Response object with the status code 201
+        return response($response, 201);
+    }
+
     public function logout(Request $request)
     {
         $user = $request->user();

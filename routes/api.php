@@ -42,6 +42,8 @@ Route::get('/products', [ProductController::class, 'index']);
 Route::get('/products/{id}', [ProductController::class, 'show']);
 //Register Route
 Route::post('/register', [AuthController::class, 'register']);
+//Login Route
+Route::post('/login', [AuthController::class, 'login']);
 
 
 //You can separate each route, or if your API has all the basic CRUD routes, you can use resource instead
